@@ -109,7 +109,7 @@ void Cliente::ingresarCliente (std::string nombre, std::string apell, std::strin
     nuevoCliente->siguiente = cliInicio; //3.[PASOS] Hacer que el nuevo nodo apunte al primer elemento de la lista
     cliInicio = nuevoCliente; //4.[PASOS] Hacer que el ptr cabeza apunte al nuevo nodo creado
 
-    std::cout << "> Cliente Ingresado Correctamente"<< std::endl;
+    std::cout << "\n> Cliente Ingresado Correctamente"<< std::endl;
 }
 
 /** 
@@ -127,8 +127,9 @@ void Cliente::calcularProductos(void) {
         imprimirCliente(auxCliente);
 
         int cant, aux = auxCliente->tarjeta.cantSellos;
-        for(cant = 0; aux >= 10; cant++, aux-=10); //Restar 10 a los productos hasta que sean < 10
-        auxCliente->tarjeta.cantSellos = aux; //Actualizar cant de sellos
+        cant = aux / 10; 
+        auxCliente->tarjeta.cantSellos = (aux % 10); //Actualizar cant de sellos
+        //for(cant = 0; aux >= 10; cant++, aux-=10); 
 
         std::cout << "- Productos gratis: " << cant << std::endl;
         std::cout << "- Nuevo total de sellos: " << auxCliente->tarjeta.cantSellos << std::endl;
@@ -182,7 +183,7 @@ int main(int argc, char const *argv[])
         opc = menu();
         switch (opc) {
             case 1:
-                std::cout << "\n> Insertando . . .\n" << std::endl;
+                std::cout << "\n> Ingresando . . .\n" << std::endl;
                 clienteLista.ingresarCliente();
                 break;
             case 2:
@@ -211,7 +212,7 @@ int menu(void) {
     int opc = 0;
     std::cout << std::endl;
     std::cout << " -------------[ Menu ]-------------" << "\n";
-    std::cout << " 1) Insertar Cliente" << std::endl;
+    std::cout << " 1) Ingresar Cliente" << std::endl;
     std::cout << " 2) Mostrar Cliente por DUI" << std::endl;
     std::cout << " 3) Calcular cantidad productos a canjear" << std::endl;
     std::cout << " 4) Salir" << std::endl;
